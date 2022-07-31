@@ -12,6 +12,7 @@
 		74032DBB28956EC800D83F39 /* PokemonCarnival.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74032DB928956EC800D83F39 /* PokemonCarnival.xcdatamodeld */; };
 		74032DBD28956ECA00D83F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74032DBC28956ECA00D83F39 /* Assets.xcassets */; };
 		74032DC028956ECA00D83F39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74032DBE28956ECA00D83F39 /* LaunchScreen.storyboard */; };
+		74C9D1192896222200DDB305 /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		74032DBC28956ECA00D83F39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74032DBF28956ECA00D83F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74032DC128956ECA00D83F39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutDSL.swift; sourceTree = "<group>"; };
 		A6B8809127109E79701028C1 /* Pods-PokemonCarnival.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCarnival.debug.xcconfig"; path = "Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival.debug.xcconfig"; sourceTree = "<group>"; };
 		E14211843299C3D33CAA400F /* Pods_PokemonCarnival.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonCarnival.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -67,6 +69,7 @@
 		74032DAF28956EC800D83F39 /* PokemonCarnival */ = {
 			isa = PBXGroup;
 			children = (
+				74C9D1172896221400DDB305 /* Extensions */,
 				74032DB028956EC800D83F39 /* AppDelegate.swift */,
 				74032DBC28956ECA00D83F39 /* Assets.xcassets */,
 				74032DBE28956ECA00D83F39 /* LaunchScreen.storyboard */,
@@ -76,13 +79,20 @@
 			path = PokemonCarnival;
 			sourceTree = "<group>";
 		};
+		74C9D1172896221400DDB305 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DCCEC03FF34BD097A79C454B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				A6B8809127109E79701028C1 /* Pods-PokemonCarnival.debug.xcconfig */,
 				535AAD9F677A0D16C247C700 /* Pods-PokemonCarnival.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -202,6 +212,7 @@
 			files = (
 				74032DBB28956EC800D83F39 /* PokemonCarnival.xcdatamodeld in Sources */,
 				74032DB128956EC800D83F39 /* AppDelegate.swift in Sources */,
+				74C9D1192896222200DDB305 /* AutoLayoutDSL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
