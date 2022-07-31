@@ -13,6 +13,8 @@
 		74032DBD28956ECA00D83F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74032DBC28956ECA00D83F39 /* Assets.xcassets */; };
 		74032DC028956ECA00D83F39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74032DBE28956ECA00D83F39 /* LaunchScreen.storyboard */; };
 		742403DB28962FC20032DF2F /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742403DA28962FC20032DF2F /* PokemonTableViewCell.swift */; };
+		743A83132896454C00036D2D /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743A83122896454C00036D2D /* ConnectionService.swift */; };
+		743A83162896457000036D2D /* PokemonEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743A83152896457000036D2D /* PokemonEndPoint.swift */; };
 		74A6BD69289646C0003164C5 /* RequestBuilderPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD68289646C0003164C5 /* RequestBuilderPlugin.swift */; };
 		74A6BD6B289646E3003164C5 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD6A289646E3003164C5 /* NetworkProvider.swift */; };
 		74A6BD6D28964791003164C5 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD6C28964791003164C5 /* Pokemon.swift */; };
@@ -30,6 +32,8 @@
 		74032DBF28956ECA00D83F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74032DC128956ECA00D83F39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		742403DA28962FC20032DF2F /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
+		743A83122896454C00036D2D /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
+		743A83152896457000036D2D /* PokemonEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonEndPoint.swift; sourceTree = "<group>"; };
 		74A6BD68289646C0003164C5 /* RequestBuilderPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RequestBuilderPlugin.swift; path = PokemonCarnival/Models/RequestBuilderPlugin.swift; sourceTree = SOURCE_ROOT; };
 		74A6BD6A289646E3003164C5 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkProvider.swift; path = PokemonCarnival/Models/NetworkProvider.swift; sourceTree = SOURCE_ROOT; };
 		74A6BD6C28964791003164C5 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
@@ -112,6 +116,14 @@
 				74A6BD6E289647A8003164C5 /* PageResult.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		743A83142896454F00036D2D /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				743A83152896457000036D2D /* PokemonEndPoint.swift */,
+			);
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 		74A6BD65289646A4003164C5 /* Network */ = {
@@ -262,12 +274,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				743A83162896457000036D2D /* PokemonEndPoint.swift in Sources */,
 				74032DBB28956EC800D83F39 /* PokemonCarnival.xcdatamodeld in Sources */,
 				74A6BD6B289646E3003164C5 /* NetworkProvider.swift in Sources */,
 				74032DB128956EC800D83F39 /* AppDelegate.swift in Sources */,
 				74C9D11D28962ABD00DDB305 /* PokemonListViewController.swift in Sources */,
 				74A6BD6D28964791003164C5 /* Pokemon.swift in Sources */,
 				74A6BD69289646C0003164C5 /* RequestBuilderPlugin.swift in Sources */,
+				743A83132896454C00036D2D /* ConnectionService.swift in Sources */,
 				742403DB28962FC20032DF2F /* PokemonTableViewCell.swift in Sources */,
 				74C9D1192896222200DDB305 /* AutoLayoutDSL.swift in Sources */,
 				74A6BD6F289647A8003164C5 /* PageResult.swift in Sources */,
