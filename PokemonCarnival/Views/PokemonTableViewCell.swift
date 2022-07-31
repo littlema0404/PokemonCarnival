@@ -34,5 +34,30 @@ class PokemonTableViewCell: UITableViewCell {
         likeButton.activate(anchors: [.relative(attribute: .leading, relatedTo: .trailing, constant: 10)], relativeTo: nameLabel)
     }
     
-    private func customizeSubviews() {}
+    private func customizeSubviews() {
+        itemImageView.contentMode = .scaleAspectFill
+        
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+    }
+    
+    func configure(with pokemon: Pokemon) {
+        nameLabel.text = pokemon.name
+        if let id = pokemon.id, let url = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png") {
+            itemImageView.setImage(url: url)
+        }
+    }
+    
+    @objc func likeButtonTapped() {
+        likeButton.isSelected.toggle()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        nameLabel.text = nil
+        itemImageView.image = nil
+        likeButton.isSelected = false
+    }
 }

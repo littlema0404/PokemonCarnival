@@ -15,4 +15,8 @@ struct Pokemon: Codable {
     
     var name: String?
     var url: String?
+    
+    var id: String? {
+        url.flatMap { URL(string: $0) }?.lastPathComponent
+    }
 }
