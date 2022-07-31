@@ -11,7 +11,8 @@ import UIKit
 class PokemonListViewController: UIViewController {
     private let cellHeight: CGFloat = 76
     private let connectionService: ConnectionService
-    
+    private let paginator: Paginator<Pokemon>
+
     private var cancellables: Set<AnyCancellable> = []
     private var pokemons: [Pokemon] = [] {
         didSet {
@@ -23,6 +24,7 @@ class PokemonListViewController: UIViewController {
     
     init(connectionService: ConnectionService) {
         self.connectionService = connectionService
+        self.paginator = connectionService.pokemonsPaginator()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -35,6 +37,7 @@ class PokemonListViewController: UIViewController {
         
         setupSubviews()
         customizeSubviews()
+        setupBinding()
         setupRequests()
     }
     
@@ -47,20 +50,18 @@ class PokemonListViewController: UIViewController {
         
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: String(describing: PokemonTableViewCell.self))
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = cellHeight
     }
     
-    private func setupRequests() {
-        connectionService.fetchPokemons().sink(receiveCompletion: { result in
-            switch result {
-            case .finished:
-                print("finished")
-            case .failure(let error):
-                print("failure \(error)")
-            }
-        }, receiveValue: { [weak self] value in
+    private func setupBinding() {
+        paginator.$items.sink(receiveValue: { [weak self] value in
             self?.pokemons = value
         }).store(in: &cancellables)
+    }
+    
+    private func setupRequests() {
+        paginator.loadNext()
     }
 }
 
@@ -77,5 +78,13 @@ extension PokemonListViewController: UITableViewDataSource {
         }
         
         return cell
+    }
+}
+
+extension PokemonListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if pokemons.count - indexPath.row < 3 {
+            paginator.loadNext()
+        }
     }
 }
