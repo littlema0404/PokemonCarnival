@@ -36,4 +36,9 @@ class NetworkProvider: MoyaProvider<MultiTarget> {
             Fail(error: error)
         }.eraseToAnyPublisher()
     }
+    
+    func requestPublisher(endPoint: TargetType, offset: Int, limit: Int) -> AnyPublisher<Response, Error> {
+        let pageResultsTargetType = PageResultsTargetType(targetType: endPoint, offset: offset, limit: limit)
+        return requestPublisher(endPoint: pageResultsTargetType)
+    }
 }
