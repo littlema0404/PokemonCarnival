@@ -19,6 +19,7 @@
 		74A6BD6B289646E3003164C5 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD6A289646E3003164C5 /* NetworkProvider.swift */; };
 		74A6BD6D28964791003164C5 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD6C28964791003164C5 /* Pokemon.swift */; };
 		74A6BD6F289647A8003164C5 /* PageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD6E289647A8003164C5 /* PageResult.swift */; };
+		74A6BD7128964BE3003164C5 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD7028964BE3003164C5 /* UIImageView+Extension.swift */; };
 		74C9D1192896222200DDB305 /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */; };
 		74C9D11D28962ABD00DDB305 /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9D11C28962ABD00DDB305 /* PokemonListViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		74A6BD6A289646E3003164C5 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkProvider.swift; path = PokemonCarnival/Models/NetworkProvider.swift; sourceTree = SOURCE_ROOT; };
 		74A6BD6C28964791003164C5 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		74A6BD6E289647A8003164C5 /* PageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageResult.swift; sourceTree = "<group>"; };
+		74A6BD7028964BE3003164C5 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutDSL.swift; sourceTree = "<group>"; };
 		74C9D11C28962ABD00DDB305 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
 		A6B8809127109E79701028C1 /* Pods-PokemonCarnival.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCarnival.debug.xcconfig"; path = "Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */,
+				74A6BD7028964BE3003164C5 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				74032DB128956EC800D83F39 /* AppDelegate.swift in Sources */,
 				74C9D11D28962ABD00DDB305 /* PokemonListViewController.swift in Sources */,
 				74A6BD6D28964791003164C5 /* Pokemon.swift in Sources */,
+				74A6BD7128964BE3003164C5 /* UIImageView+Extension.swift in Sources */,
 				74A6BD69289646C0003164C5 /* RequestBuilderPlugin.swift in Sources */,
 				743A83132896454C00036D2D /* ConnectionService.swift in Sources */,
 				742403DB28962FC20032DF2F /* PokemonTableViewCell.swift in Sources */,
