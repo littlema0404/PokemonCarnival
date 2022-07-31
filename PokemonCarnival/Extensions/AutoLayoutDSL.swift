@@ -14,9 +14,9 @@ enum LayoutAnchor {
                   constant: CGFloat)
 
     case relative(attribute: NSLayoutConstraint.Attribute,
-                  relation: NSLayoutConstraint.Relation,
+                  relation: NSLayoutConstraint.Relation = .equal,
                   relatedTo: NSLayoutConstraint.Attribute,
-                  multiplier: CGFloat,
+                  multiplier: CGFloat = 1,
                   constant: CGFloat)
 }
 
