@@ -13,6 +13,8 @@
 		74032DBD28956ECA00D83F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74032DBC28956ECA00D83F39 /* Assets.xcassets */; };
 		74032DC028956ECA00D83F39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74032DBE28956ECA00D83F39 /* LaunchScreen.storyboard */; };
 		742403DB28962FC20032DF2F /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742403DA28962FC20032DF2F /* PokemonTableViewCell.swift */; };
+		74A6BD69289646C0003164C5 /* RequestBuilderPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD68289646C0003164C5 /* RequestBuilderPlugin.swift */; };
+		74A6BD6B289646E3003164C5 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD6A289646E3003164C5 /* NetworkProvider.swift */; };
 		74C9D1192896222200DDB305 /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */; };
 		74C9D11D28962ABD00DDB305 /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9D11C28962ABD00DDB305 /* PokemonListViewController.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +28,8 @@
 		74032DBF28956ECA00D83F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74032DC128956ECA00D83F39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		742403DA28962FC20032DF2F /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
+		74A6BD68289646C0003164C5 /* RequestBuilderPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RequestBuilderPlugin.swift; path = PokemonCarnival/Models/RequestBuilderPlugin.swift; sourceTree = SOURCE_ROOT; };
+		74A6BD6A289646E3003164C5 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkProvider.swift; path = PokemonCarnival/Models/NetworkProvider.swift; sourceTree = SOURCE_ROOT; };
 		74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutDSL.swift; sourceTree = "<group>"; };
 		74C9D11C28962ABD00DDB305 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
 		A6B8809127109E79701028C1 /* Pods-PokemonCarnival.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCarnival.debug.xcconfig"; path = "Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 		74032DAF28956EC800D83F39 /* PokemonCarnival */ = {
 			isa = PBXGroup;
 			children = (
+				743A830E289644E100036D2D /* Models */,
 				742403D928962DC90032DF2F /* Views */,
 				74C9D11B28962A8B00DDB305 /* ViewControllers */,
 				74C9D1172896221400DDB305 /* Extensions */,
@@ -91,6 +96,25 @@
 				742403DA28962FC20032DF2F /* PokemonTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		743A830E289644E100036D2D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				74A6BD65289646A4003164C5 /* Network */,
+				743A83142896454F00036D2D /* Endpoints */,
+				743A83122896454C00036D2D /* ConnectionService.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		74A6BD65289646A4003164C5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				74A6BD68289646C0003164C5 /* RequestBuilderPlugin.swift */,
+				74A6BD6A289646E3003164C5 /* NetworkProvider.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		74C9D1172896221400DDB305 /* Extensions */ = {
@@ -233,8 +257,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				74032DBB28956EC800D83F39 /* PokemonCarnival.xcdatamodeld in Sources */,
+				74A6BD6B289646E3003164C5 /* NetworkProvider.swift in Sources */,
 				74032DB128956EC800D83F39 /* AppDelegate.swift in Sources */,
 				74C9D11D28962ABD00DDB305 /* PokemonListViewController.swift in Sources */,
+				74A6BD69289646C0003164C5 /* RequestBuilderPlugin.swift in Sources */,
 				742403DB28962FC20032DF2F /* PokemonTableViewCell.swift in Sources */,
 				74C9D1192896222200DDB305 /* AutoLayoutDSL.swift in Sources */,
 			);
