@@ -10,7 +10,7 @@ import UIKit
 /// Represents a single `NSLayoutConstraint`
 enum LayoutAnchor {
     case constant(attribute: NSLayoutConstraint.Attribute,
-                  relation: NSLayoutConstraint.Relation,
+                  relation: NSLayoutConstraint.Relation = .equal,
                   constant: CGFloat)
 
     case relative(attribute: NSLayoutConstraint.Attribute,
@@ -33,7 +33,7 @@ extension LayoutAnchor {
     static let width = constant(attribute: .width, relation: .equal)
     static let height = constant(attribute: .height, relation: .equal)
 
-    static func constant(
+    private static func constant(
         attribute: NSLayoutConstraint.Attribute,
         relation: NSLayoutConstraint.Relation
     ) -> (CGFloat) -> LayoutAnchor {
@@ -42,7 +42,7 @@ extension LayoutAnchor {
         }
     }
 
-    static func relative(
+    private static func relative(
         attribute: NSLayoutConstraint.Attribute,
         relation: NSLayoutConstraint.Relation,
         relatedTo: NSLayoutConstraint.Attribute,
