@@ -7,25 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		337784DA133989EF4B43FE82 /* Pods_PokemonCarnival.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14211843299C3D33CAA400F /* Pods_PokemonCarnival.framework */; };
 		74032DB128956EC800D83F39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74032DB028956EC800D83F39 /* AppDelegate.swift */; };
-		74032DB328956EC800D83F39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74032DB228956EC800D83F39 /* SceneDelegate.swift */; };
-		74032DB528956EC800D83F39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74032DB428956EC800D83F39 /* ViewController.swift */; };
-		74032DB828956EC800D83F39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74032DB628956EC800D83F39 /* Main.storyboard */; };
 		74032DBB28956EC800D83F39 /* PokemonCarnival.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74032DB928956EC800D83F39 /* PokemonCarnival.xcdatamodeld */; };
 		74032DBD28956ECA00D83F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74032DBC28956ECA00D83F39 /* Assets.xcassets */; };
 		74032DC028956ECA00D83F39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74032DBE28956ECA00D83F39 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		535AAD9F677A0D16C247C700 /* Pods-PokemonCarnival.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCarnival.release.xcconfig"; path = "Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival.release.xcconfig"; sourceTree = "<group>"; };
 		74032DAD28956EC800D83F39 /* PokemonCarnival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonCarnival.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74032DB028956EC800D83F39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		74032DB228956EC800D83F39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		74032DB428956EC800D83F39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		74032DB728956EC800D83F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74032DBA28956EC800D83F39 /* PokemonCarnival.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonCarnival.xcdatamodel; sourceTree = "<group>"; };
 		74032DBC28956ECA00D83F39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74032DBF28956ECA00D83F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74032DC128956ECA00D83F39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6B8809127109E79701028C1 /* Pods-PokemonCarnival.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCarnival.debug.xcconfig"; path = "Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival.debug.xcconfig"; sourceTree = "<group>"; };
+		E14211843299C3D33CAA400F /* Pods_PokemonCarnival.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonCarnival.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +31,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				337784DA133989EF4B43FE82 /* Pods_PokemonCarnival.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4FF8423A32CFF0618B1A1DAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E14211843299C3D33CAA400F /* Pods_PokemonCarnival.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		74032DA428956EC800D83F39 = {
 			isa = PBXGroup;
 			children = (
 				74032DAF28956EC800D83F39 /* PokemonCarnival */,
 				74032DAE28956EC800D83F39 /* Products */,
+				DCCEC03FF34BD097A79C454B /* Pods */,
+				4FF8423A32CFF0618B1A1DAF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,15 +68,22 @@
 			isa = PBXGroup;
 			children = (
 				74032DB028956EC800D83F39 /* AppDelegate.swift */,
-				74032DB228956EC800D83F39 /* SceneDelegate.swift */,
-				74032DB428956EC800D83F39 /* ViewController.swift */,
-				74032DB628956EC800D83F39 /* Main.storyboard */,
 				74032DBC28956ECA00D83F39 /* Assets.xcassets */,
 				74032DBE28956ECA00D83F39 /* LaunchScreen.storyboard */,
 				74032DC128956ECA00D83F39 /* Info.plist */,
 				74032DB928956EC800D83F39 /* PokemonCarnival.xcdatamodeld */,
 			);
 			path = PokemonCarnival;
+			sourceTree = "<group>";
+		};
+		DCCEC03FF34BD097A79C454B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A6B8809127109E79701028C1 /* Pods-PokemonCarnival.debug.xcconfig */,
+				535AAD9F677A0D16C247C700 /* Pods-PokemonCarnival.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +93,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 74032DC428956ECA00D83F39 /* Build configuration list for PBXNativeTarget "PokemonCarnival" */;
 			buildPhases = (
+				F8ACE5215D092C658A2EC85B /* [CP] Check Pods Manifest.lock */,
 				74032DA928956EC800D83F39 /* Sources */,
 				74032DAA28956EC800D83F39 /* Frameworks */,
 				74032DAB28956EC800D83F39 /* Resources */,
+				CF631163DB3CFC07F8AB1862 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,35 +148,66 @@
 			files = (
 				74032DC028956ECA00D83F39 /* LaunchScreen.storyboard in Resources */,
 				74032DBD28956ECA00D83F39 /* Assets.xcassets in Resources */,
-				74032DB828956EC800D83F39 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CF631163DB3CFC07F8AB1862 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8ACE5215D092C658A2EC85B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PokemonCarnival-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		74032DA928956EC800D83F39 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74032DB528956EC800D83F39 /* ViewController.swift in Sources */,
 				74032DBB28956EC800D83F39 /* PokemonCarnival.xcdatamodeld in Sources */,
 				74032DB128956EC800D83F39 /* AppDelegate.swift in Sources */,
-				74032DB328956EC800D83F39 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		74032DB628956EC800D83F39 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				74032DB728956EC800D83F39 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		74032DBE28956ECA00D83F39 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -286,6 +335,7 @@
 		};
 		74032DC528956ECA00D83F39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6B8809127109E79701028C1 /* Pods-PokemonCarnival.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -295,7 +345,7 @@
 				INFOPLIST_FILE = PokemonCarnival/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortraitUpsideDown;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -313,6 +363,7 @@
 		};
 		74032DC628956ECA00D83F39 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 535AAD9F677A0D16C247C700 /* Pods-PokemonCarnival.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,7 +373,7 @@
 				INFOPLIST_FILE = PokemonCarnival/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortraitUpsideDown;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
