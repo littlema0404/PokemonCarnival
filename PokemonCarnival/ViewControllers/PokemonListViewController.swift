@@ -9,6 +9,7 @@ import Combine
 import UIKit
 
 class PokemonListViewController: UIViewController {
+    private let imageURLTemplate = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%@.png"
     private let cellHeight: CGFloat = 76
     private let connectionService: ConnectionService
     private let paginator: Paginator<Pokemon>
@@ -74,7 +75,11 @@ extension PokemonListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PokemonTableViewCell.self), for: indexPath)
         
         if let pokemonCell = cell as? PokemonTableViewCell {
-            pokemonCell.configure(with: pokemons[indexPath.row])
+            let pokemon = pokemons[indexPath.row]
+            let image = pokemon.id.flatMap { String(format: imageURLTemplate, $0) }
+            let isLiked = pokemon.id.flatMap {  ManagedPokenmon.query(id: $0)?.isLiked }
+            pokemonCell.configure(name: pokemon.name, image: image, isLiked: isLiked)
+            pokemonCell.delegate = self
         }
         
         return cell
@@ -86,5 +91,13 @@ extension PokemonListViewController: UITableViewDelegate {
         if pokemons.count - indexPath.row < 3 {
             paginator.loadNext()
         }
+    }
+}
+
+extension PokemonListViewController: PokemonTableViewCellDelegate {
+    func pokemonTableViewCellLikeButtonDidTapped(cell: PokemonTableViewCell) {
+        guard let index = tableView.indexPath(for: cell) else { return }
+        
+        pokemons[index.row].isLiked = cell.isLiked
     }
 }

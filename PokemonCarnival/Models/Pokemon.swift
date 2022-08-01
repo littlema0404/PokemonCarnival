@@ -15,6 +15,17 @@ struct Pokemon: Codable {
     
     var name: String?
     var url: String?
+    var isLiked: Bool? {
+        didSet {
+            guard let isLiked = isLiked,
+                  isLiked != oldValue,
+                  let id = id else { return }
+            
+            let managedPokenmon = ManagedPokenmon.findFirstOrCreate(id: id)
+            managedPokenmon.isLiked = isLiked
+            managedPokenmon.saveToDefaultContext()
+        }
+    }
     
     var id: String? {
         url.flatMap { URL(string: $0) }?.lastPathComponent

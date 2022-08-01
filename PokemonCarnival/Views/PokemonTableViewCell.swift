@@ -15,7 +15,10 @@ class PokemonTableViewCell: UITableViewCell {
     private lazy var itemImageView = UIImageView(frame: .zero)
     private lazy var nameLabel = UILabel(frame: .zero)
     private lazy var likeButton = UIButton(type: .custom)
-
+    
+    var isLiked: Bool {
+        likeButton.isSelected
+    }
     
     weak var delegate: PokemonTableViewCellDelegate?
 
@@ -49,11 +52,10 @@ class PokemonTableViewCell: UITableViewCell {
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
     }
     
-    func configure(with pokemon: Pokemon) {
-        nameLabel.text = pokemon.name
-        if let id = pokemon.id, let url = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png") {
-            itemImageView.setImage(url: url)
-        }
+    func configure(name: String?, image: String?, isLiked: Bool?) {
+        nameLabel.text = name ?? ""
+        itemImageView.setImage(url: image.flatMap { URL(string: $0) })
+        likeButton.isSelected = isLiked ?? false
     }
     
     @objc func likeButtonTapped() {
