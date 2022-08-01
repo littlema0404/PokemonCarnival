@@ -7,10 +7,17 @@
 
 import UIKit
 
+protocol PokemonTableViewCellDelegate: AnyObject {
+    func pokemonTableViewCellLikeButtonDidTapped(cell: PokemonTableViewCell)
+}
+
 class PokemonTableViewCell: UITableViewCell {
     private lazy var itemImageView = UIImageView(frame: .zero)
     private lazy var nameLabel = UILabel(frame: .zero)
     private lazy var likeButton = UIButton(type: .custom)
+
+    
+    weak var delegate: PokemonTableViewCellDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,6 +58,7 @@ class PokemonTableViewCell: UITableViewCell {
     
     @objc func likeButtonTapped() {
         likeButton.isSelected.toggle()
+        delegate?.pokemonTableViewCellLikeButtonDidTapped(cell: self)
     }
     
     override func prepareForReuse() {
