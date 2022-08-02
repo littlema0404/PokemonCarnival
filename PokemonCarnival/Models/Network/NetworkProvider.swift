@@ -9,9 +9,9 @@ import Combine
 import Moya
 
 class NetworkProvider: MoyaProvider<MultiTarget> {
-    private let requestBuilderPlugin: RequestBuilderPlugin
-    private let apiVersion: String = "v2/"
-    private let domain = "https://pokeapi.co/api/"
+    let requestBuilderPlugin: RequestBuilderPlugin
+    let apiVersion: String = "v2/"
+    let domain = "https://pokeapi.co/api/"
 
     var apiEntryPoint: String {
         requestBuilderPlugin.apiEntryPoint

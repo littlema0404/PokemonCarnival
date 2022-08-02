@@ -11,7 +11,7 @@ import Moya
 
 class ConnectionService {
     private lazy var decoder = JSONDecoder()
-    private lazy var networkProvider = NetworkProvider(forTesting: false)
+    private(set) lazy var networkProvider = NetworkProvider(forTesting: false)
     
     func fetchPokemon(id: Int) -> AnyPublisher<Pokemon, Error> {
         let endpoint = PokemonEndPoint.fetchPokemon(id: id)
@@ -21,7 +21,7 @@ class ConnectionService {
             .eraseToAnyPublisher()
     }
     
-    func pokemonsPaginator() -> Paginator<Pokemon> {
+    func pokemonsPaginator() -> Paginator<AbstractPokemon> {
         Paginator(networkProvider: networkProvider, decoder: decoder, endPoint: PokemonEndPoint.fetchPokemons)
     }
 }

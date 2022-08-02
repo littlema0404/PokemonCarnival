@@ -33,11 +33,8 @@ public class ManagedPokenmon: NSManagedObject {
     }
 
     func configure(with pokemon: Pokemon) {
-        if let id = pokemon.id {
-            itemId = Int32(id)
-        }
+        itemId = Int32(pokemon.id)
         name = pokemon.name
-        url = pokemon.url
         if let height = pokemon.height {
             self.height = height
         }
@@ -47,6 +44,6 @@ public class ManagedPokenmon: NSManagedObject {
         if let like = pokemon.isLiked {
             self.isLiked = like
         }
-        types = NSArray(array: pokemon.types?.compactMap { $0.type?.name } ?? [])
+        types = NSArray(array: pokemon.types?.compactMap { $0.name } ?? [])
     }
 }

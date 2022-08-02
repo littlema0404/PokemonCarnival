@@ -67,8 +67,8 @@ extension LikedPokemonsViewController: UITableViewDataSource {
         
         if let pokemonCell = cell as? PokemonTableViewCell {
             let pokemon = pokemons[indexPath.row]
-            let image = pokemon.id.flatMap { String(format: imageURLTemplate, $0) }
-            let isLiked = pokemon.id.flatMap { ManagedPokenmon.query(id: $0)?.isLiked }
+            let image = String(format: imageURLTemplate, pokemon.id)
+            let isLiked = ManagedPokenmon.query(id: pokemon.id)?.isLiked
             pokemonCell.configure(name: pokemon.name, image: image, isLiked: isLiked)
             pokemonCell.delegate = self
         }
@@ -81,9 +81,8 @@ extension LikedPokemonsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let pokemonId = pokemons[indexPath.row].id else { return }
-        
-        let viewController = PokemonDetailViewController(pokemonId: pokemonId, connectionService: connectionService)
+        let pokemon = pokemons[indexPath.row]
+        let viewController = PokemonDetailViewController(pokemon: pokemon, connectionService: connectionService)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

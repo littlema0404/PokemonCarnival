@@ -12,7 +12,7 @@ class PokemonListViewController: UIViewController {
     private let imageURLTemplate = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%i.png"
     private let cellHeight: CGFloat = 76
     private let connectionService: ConnectionService
-    private let paginator: Paginator<Pokemon>
+    private let paginator: Paginator<AbstractPokemon>
 
     private var cancellables: Set<AnyCancellable> = []
     private var pokemons: [Pokemon] = [] {
@@ -64,10 +64,21 @@ class PokemonListViewController: UIViewController {
     
     private func setupBinding() {
         paginator.$items
+            .map({ items -> Published<[Pokemon]>.Publisher.Output in
+                items.compactMap { item in
+                    let converter = PokenmonConverter(from: item, domain: self.connectionService.networkProvider.apiEntryPoint)
+                    switch converter.type {
+                    case .pokemon(let pokemon):
+                        return pokemon
+                    case .undefined:
+                        return nil
+                    }
+                }
+            })
             .saveToCoreData()
             .sink(receiveValue: { [weak self] value in
-            self?.pokemons = value
-        }).store(in: &cancellables)
+                self?.pokemons = value
+            }).store(in: &cancellables)
     }
     
     private func setupRequests() {
@@ -92,8 +103,8 @@ extension PokemonListViewController: UITableViewDataSource {
         
         if let pokemonCell = cell as? PokemonTableViewCell {
             let pokemon = pokemons[indexPath.row]
-            let image = pokemon.id.flatMap { String(format: imageURLTemplate, $0) }
-            let isLiked = pokemon.id.flatMap { ManagedPokenmon.query(id: $0)?.isLiked }
+            let image = String(format: imageURLTemplate, pokemon.id)
+            let isLiked = ManagedPokenmon.query(id: pokemon.id)?.isLiked
             pokemonCell.configure(name: pokemon.name, image: image, isLiked: isLiked)
             pokemonCell.delegate = self
         }
@@ -112,9 +123,8 @@ extension PokemonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let pokemonId = pokemons[indexPath.row].id else { return }
-        
-        let viewController = PokemonDetailViewController(pokemonId: pokemonId, connectionService: connectionService)
+        let pokemon = pokemons[indexPath.row]
+        let viewController = PokemonDetailViewController(pokemon: pokemon, connectionService: connectionService)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

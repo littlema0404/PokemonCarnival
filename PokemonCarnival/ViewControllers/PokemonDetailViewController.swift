@@ -9,18 +9,16 @@ import UIKit
 import Combine
 
 class PokemonDetailViewController: UIViewController {
-    private let imageURLTemplate = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/%i.png"
     private let connectionService: ConnectionService
 
     private var cancellables: Set<AnyCancellable> = []
-    private var pokemonId: Int
-    private var pokemon: Pokemon? {
+    private var pokemon: Pokemon {
         didSet {
-            idLabel.text = pokemon?.id.flatMap { String(format: "編號： %03d", $0) } ?? "-"
-            nameLabel.text = pokemon?.name.flatMap { "\($0)" } ?? "-"
-            heightLabel.text = pokemon?.height.flatMap { "身高： \($0 * 10.0) cm" } ?? "-"
-            weightLabel.text = pokemon?.weight.flatMap { "體重： \($0 / 10.0) kg" } ?? "-"
-            let types = pokemon?.types?.compactMap { $0.type?.name }.joined(separator: ", ") ?? "-"
+            idLabel.text = String(format: "編號： %03d", pokemon.id)
+            nameLabel.text = "\(pokemon.name ?? "-")"
+            heightLabel.text = pokemon.height.flatMap { "身高： \($0 * 10.0) cm" }
+            weightLabel.text = pokemon.weight.flatMap { "體重： \($0 / 10.0) kg" }
+            let types = pokemon.types?.compactMap { $0.type?.name }.joined(separator: ", ") ?? "-"
             typeLabel.text = "屬性： \(types)"
         }
     }
@@ -35,8 +33,8 @@ class PokemonDetailViewController: UIViewController {
     private lazy var typeLabel = UILabel(frame: .zero)
     private lazy var likeButton = UIButton(type: .custom)
     
-    init(pokemonId: Int, connectionService: ConnectionService) {
-        self.pokemonId = pokemonId
+    init(pokemon: Pokemon, connectionService: ConnectionService) {
+        self.pokemon = pokemon
         self.connectionService = connectionService
         
         super.init(nibName: nil, bundle: nil)
@@ -74,7 +72,7 @@ class PokemonDetailViewController: UIViewController {
     }
     
     private func customizeSubviews() {
-        if let managedPokenmon = ManagedPokenmon.query(id: pokemonId) {
+        if let managedPokenmon = ManagedPokenmon.query(id: pokemon.id) {
             pokemon = Pokemon(managedPokenmon: managedPokenmon)
             likeButton.isSelected = managedPokenmon.isLiked
         }
@@ -114,7 +112,7 @@ class PokemonDetailViewController: UIViewController {
     }
     
     private func setupRequests() {
-        connectionService.fetchPokemon(id: pokemonId)
+        connectionService.fetchPokemon(id: pokemon.id)
             .saveToCoreData()
             .sink(receiveCompletion: { _ in
         }, receiveValue: { [weak self] pokemon in
@@ -124,6 +122,6 @@ class PokemonDetailViewController: UIViewController {
     
     @objc func likeButtonTapped() {
         likeButton.isSelected.toggle()
-        pokemon?.isLiked = likeButton.isSelected
+        pokemon.isLiked = likeButton.isSelected
     }
 }
