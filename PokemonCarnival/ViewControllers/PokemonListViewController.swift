@@ -80,7 +80,7 @@ extension PokemonListViewController: UITableViewDataSource {
         if let pokemonCell = cell as? PokemonTableViewCell {
             let pokemon = pokemons[indexPath.row]
             let image = pokemon.id.flatMap { String(format: imageURLTemplate, $0) }
-            let isLiked = pokemon.id.flatMap {  ManagedPokenmon.query(id: $0)?.isLiked }
+            let isLiked = pokemon.id.flatMap { ManagedPokenmon.query(id: $0)?.isLiked }
             pokemonCell.configure(name: pokemon.name, image: image, isLiked: isLiked)
             pokemonCell.delegate = self
         }

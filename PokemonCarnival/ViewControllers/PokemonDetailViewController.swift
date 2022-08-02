@@ -16,11 +16,11 @@ class PokemonDetailViewController: UIViewController {
     private var pokemonId: Int
     private var pokemon: Pokemon? {
         didSet {
-            idLabel.text = pokemon?.id.flatMap { String(format: "編號： %03d", $0) }
-            nameLabel.text = pokemon?.name.flatMap { "\($0)" }
-            heightLabel.text = pokemon?.height.flatMap { "身高： \(Double($0) * 10.0) cm" }
-            weightLabel.text = pokemon?.weight.flatMap { "體重： \(Double($0) / 10.0) kg" }
-            let types = pokemon?.types?.compactMap { $0.type?.name }.joined(separator: ", ") ?? ""
+            idLabel.text = pokemon?.id.flatMap { String(format: "編號： %03d", $0) } ?? "-"
+            nameLabel.text = pokemon?.name.flatMap { "\($0)" } ?? "-"
+            heightLabel.text = pokemon?.height.flatMap { "身高： \($0 * 10.0) cm" } ?? "-"
+            weightLabel.text = pokemon?.weight.flatMap { "體重： \($0 / 10.0) kg" } ?? "-"
+            let types = pokemon?.types?.compactMap { $0.type?.name }.joined(separator: ", ") ?? "-"
             typeLabel.text = "屬性： \(types)"
         }
     }
