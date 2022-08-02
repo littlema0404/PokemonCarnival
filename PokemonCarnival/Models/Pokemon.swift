@@ -28,8 +28,8 @@ struct Pokemon: Codable {
         sprites?.frontDefault
     }
     
-    var largeImage: String? {
-        sprites?.other?.officialArtworkFrontDefault
+    var coverImage: String? {
+        sprites?.other?.coverImage
     }
     
     var isLiked: Bool? {
@@ -52,7 +52,8 @@ struct Pokemon: Codable {
         height = managedPokenmon.height
         weight = managedPokenmon.weight
         isLiked = managedPokenmon.isLiked
-        types = managedPokenmon.types as? [ItemType]
+        types = managedPokenmon.types?.compactMap { $0 as? String }.map { ItemType(name: $0) }
+        sprites = Sprites(frontDefault: managedPokenmon.frontDefaultImage, other: Other(coverImage: managedPokenmon.coverImage))
     }
 }
 
@@ -72,6 +73,10 @@ extension Pokemon {
         }
         
         var name: String?
+        
+        init(name: String) {
+            self.name = name
+        }
         
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -99,21 +104,25 @@ extension Pokemon {
     struct Other: Codable {
         enum CodingKeys: String, CodingKey {
             case officialArtwork = "official-artwork"
-            case officialArtworkFrontDefault = "front_default"
+            case coverImage = "front_default"
         }
 
-        var officialArtworkFrontDefault: String?
+        var coverImage: String?
+        
+        init(coverImage: String?) {
+            self.coverImage = coverImage
+        }
         
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let officialArtwork = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .officialArtwork)
-            officialArtworkFrontDefault = try? officialArtwork?.decode(String.self, forKey: .officialArtworkFrontDefault)
+            coverImage = try? officialArtwork?.decode(String.self, forKey: .coverImage)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             var officialArtwork = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .officialArtwork)
-            try officialArtwork.encode(officialArtworkFrontDefault, forKey: .officialArtworkFrontDefault)
+            try officialArtwork.encode(coverImage, forKey: .coverImage)
         }
     }
 }
