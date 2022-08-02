@@ -33,6 +33,7 @@ class PokemonDetailViewController: UIViewController {
     private lazy var heightLabel = UILabel(frame: .zero)
     private lazy var weightLabel = UILabel(frame: .zero)
     private lazy var typeLabel = UILabel(frame: .zero)
+    private lazy var likeButton = UIButton(type: .custom)
     
     init(pokemonId: Int, connectionService: ConnectionService) {
         self.pokemonId = pokemonId
@@ -62,11 +63,21 @@ class PokemonDetailViewController: UIViewController {
         stackView.addArrangedSubview(imageView)
         imageView.activate(anchors: [.relative(attribute: .height, relatedTo: .width, constant: 0)], relativeTo: imageView)
         
-        let stackViewSubviews = [nameLabel, idLabel, heightLabel, weightLabel, typeLabel]
+        let containerView = UIView(frame: .zero)
+        containerView.addSubview(nameLabel, anchors: [.top(0), .leading(0), .bottom(0)])
+        containerView.addSubview(likeButton, anchors: [.trailing(0), .width(36), .height(36)])
+        likeButton.activate(anchors: [.centerY(0)], relativeTo: containerView)
+        likeButton.activate(anchors: [.relative(attribute: .leading, relatedTo: .trailing, constant: 5)], relativeTo: nameLabel)
+        
+        let stackViewSubviews = [containerView, idLabel, heightLabel, weightLabel, typeLabel]
         stackViewSubviews.forEach { stackView.addArrangedSubview($0) }
     }
     
     private func customizeSubviews() {
+        if let managedPokenmon = ManagedPokenmon.query(id: pokemonId) {
+            likeButton.isSelected = managedPokenmon.isLiked
+        }
+        
         view.backgroundColor = .white
         
         stackView.alignment = .fill
@@ -79,12 +90,16 @@ class PokemonDetailViewController: UIViewController {
         imageView.setImage(url: URL(string: image))
         stackView.setCustomSpacing(10, after: imageView)
         
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        
         idLabel.textColor = .black
         idLabel.font = .systemFont(ofSize: 16)
         
         nameLabel.textColor = .black
         nameLabel.font = .boldSystemFont(ofSize: 32)
-        
+        nameLabel.numberOfLines = 0
         stackView.setCustomSpacing(10, after: nameLabel)
 
         heightLabel.textColor = .black
@@ -104,5 +119,10 @@ class PokemonDetailViewController: UIViewController {
         }, receiveValue: { [weak self] pokemon in
             self?.pokemon = pokemon
         }).store(in: &cancellables)
+    }
+    
+    @objc func likeButtonTapped() {
+        likeButton.isSelected.toggle()
+        pokemon?.isLiked = likeButton.isSelected
     }
 }
