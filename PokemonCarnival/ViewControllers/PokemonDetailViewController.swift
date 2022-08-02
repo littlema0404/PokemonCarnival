@@ -21,8 +21,12 @@ class PokemonDetailViewController: UIViewController {
             let types = pokemon.types?.compactMap { $0.name }.joined(separator: ", ") ?? "-"
             typeLabel.text = "屬性： \(types)"
             
-            coverImageView.setImage(url: pokemon.coverImage.flatMap { URL(string: $0) })
-            thumbnailImageView.setImage(url: pokemon.frontDefaultImage.flatMap { URL(string: $0) })
+            if let url = pokemon.coverImage.flatMap({ URL(string: $0) }) {
+                coverImageView.setImage(url: url)
+            }
+            if let url = pokemon.frontDefaultImage.flatMap({ URL(string: $0) }) {
+                thumbnailImageView.setImage(url: url)
+            }
         }
     }
 
