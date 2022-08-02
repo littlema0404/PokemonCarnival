@@ -22,6 +22,7 @@
 		74AC25832899A07200377CDD /* UpdateLikeVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC25822899A07200377CDD /* UpdateLikeVisitor.swift */; };
 		74AC25852899A4D800377CDD /* ItemVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC25842899A4D800377CDD /* ItemVisitor.swift */; };
 		74AC25872899A4EA00377CDD /* Likeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC25862899A4EA00377CDD /* Likeable.swift */; };
+		74AC258F2899A65900377CDD /* PokemonCarnivalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC258E2899A65900377CDD /* PokemonCarnivalTests.swift */; };
 		74C1A9D72899792B00AA811B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1A9D62899792B00AA811B /* UIView+Extensions.swift */; };
 		74C1A9D928997ECC00AA811B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1A9D828997ECC00AA811B /* StateView.swift */; };
 		74C9D1192896222200DDB305 /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */; };
@@ -41,6 +42,16 @@
 		74F68EF82898FBC1003DF0C6 /* LikedPokemonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EF72898FBC1003DF0C6 /* LikedPokemonsViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		74AC25902899A65900377CDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74032DA528956EC800D83F39 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74032DAC28956EC800D83F39;
+			remoteInfo = PokemonCarnival;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		535AAD9F677A0D16C247C700 /* Pods-PokemonCarnival.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCarnival.release.xcconfig"; path = "Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival.release.xcconfig"; sourceTree = "<group>"; };
 		74032DAD28956EC800D83F39 /* PokemonCarnival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonCarnival.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +70,8 @@
 		74AC25822899A07200377CDD /* UpdateLikeVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLikeVisitor.swift; sourceTree = "<group>"; };
 		74AC25842899A4D800377CDD /* ItemVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVisitor.swift; sourceTree = "<group>"; };
 		74AC25862899A4EA00377CDD /* Likeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Likeable.swift; sourceTree = "<group>"; };
+		74AC258C2899A65800377CDD /* PokemonCarnivalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonCarnivalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74AC258E2899A65900377CDD /* PokemonCarnivalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCarnivalTests.swift; sourceTree = "<group>"; };
 		74C1A9D62899792B00AA811B /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		74C1A9D828997ECC00AA811B /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutDSL.swift; sourceTree = "<group>"; };
@@ -89,6 +102,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		74AC25892899A65800377CDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				74032DAF28956EC800D83F39 /* PokemonCarnival */,
+				74AC258D2899A65800377CDD /* PokemonCarnivalTests */,
 				74032DAE28956EC800D83F39 /* Products */,
 				DCCEC03FF34BD097A79C454B /* Pods */,
 				4FF8423A32CFF0618B1A1DAF /* Frameworks */,
@@ -114,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				74032DAD28956EC800D83F39 /* PokemonCarnival.app */,
+				74AC258C2899A65800377CDD /* PokemonCarnivalTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +190,14 @@
 				743A83152896457000036D2D /* PokemonEndPoint.swift */,
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		74AC258D2899A65800377CDD /* PokemonCarnivalTests */ = {
+			isa = PBXGroup;
+			children = (
+				74AC258E2899A65900377CDD /* PokemonCarnivalTests.swift */,
+			);
+			path = PokemonCarnivalTests;
 			sourceTree = "<group>";
 		};
 		74C9D1172896221400DDB305 /* Extensions */ = {
@@ -244,6 +274,24 @@
 			productReference = 74032DAD28956EC800D83F39 /* PokemonCarnival.app */;
 			productType = "com.apple.product-type.application";
 		};
+		74AC258B2899A65800377CDD /* PokemonCarnivalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74AC25922899A65900377CDD /* Build configuration list for PBXNativeTarget "PokemonCarnivalTests" */;
+			buildPhases = (
+				74AC25882899A65800377CDD /* Sources */,
+				74AC25892899A65800377CDD /* Frameworks */,
+				74AC258A2899A65800377CDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74AC25912899A65900377CDD /* PBXTargetDependency */,
+			);
+			name = PokemonCarnivalTests;
+			productName = PokemonCarnivalTests;
+			productReference = 74AC258C2899A65800377CDD /* PokemonCarnivalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -256,6 +304,10 @@
 				TargetAttributes = {
 					74032DAC28956EC800D83F39 = {
 						CreatedOnToolsVersion = 13.4;
+					};
+					74AC258B2899A65800377CDD = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = 74032DAC28956EC800D83F39;
 					};
 				};
 			};
@@ -273,6 +325,7 @@
 			projectRoot = "";
 			targets = (
 				74032DAC28956EC800D83F39 /* PokemonCarnival */,
+				74AC258B2899A65800377CDD /* PokemonCarnivalTests */,
 			);
 		};
 /* End PBXProject section */
@@ -284,6 +337,13 @@
 			files = (
 				74032DC028956ECA00D83F39 /* LaunchScreen.storyboard in Resources */,
 				74032DBD28956ECA00D83F39 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74AC258A2899A65800377CDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +428,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		74AC25882899A65800377CDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74AC258F2899A65900377CDD /* PokemonCarnivalTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74AC25912899A65900377CDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74032DAC28956EC800D83F39 /* PokemonCarnival */;
+			targetProxy = 74AC25902899A65900377CDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		74032DBE28956ECA00D83F39 /* LaunchScreen.storyboard */ = {
@@ -552,6 +628,40 @@
 			};
 			name = Release;
 		};
+		74AC25932899A65900377CDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = littlema.PokemonCarnivalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokemonCarnival.app/PokemonCarnival";
+			};
+			name = Debug;
+		};
+		74AC25942899A65900377CDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = littlema.PokemonCarnivalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokemonCarnival.app/PokemonCarnival";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -569,6 +679,15 @@
 			buildConfigurations = (
 				74032DC528956ECA00D83F39 /* Debug */,
 				74032DC628956ECA00D83F39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74AC25922899A65900377CDD /* Build configuration list for PBXNativeTarget "PokemonCarnivalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74AC25932899A65900377CDD /* Debug */,
+				74AC25942899A65900377CDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

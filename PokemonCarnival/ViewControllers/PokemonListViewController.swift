@@ -74,8 +74,8 @@ class PokemonListViewController: UIViewController {
             .map({ items -> Published<[Pokemon]>.Publisher.Output in
                 items.compactMap { item in
                     if let url = item.url.flatMap({ URL(string: $0) }) {
-                        let parser = URLParser(url: url, domain: self.connectionService.networkProvider.apiEntryPoint)
-                        switch parser.targetType {
+                        let parser = URLParser(domain: self.connectionService.networkProvider.apiEntryPoint)
+                        switch parser.make(url: url) {
                         case .pokemon(var pokemon):
                             pokemon.name = item.name
                             return pokemon

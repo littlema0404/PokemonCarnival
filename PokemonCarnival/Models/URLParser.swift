@@ -7,28 +7,30 @@
 
 import Foundation
 
+private enum RegexType: String, CaseIterable {
+    case pokemon = "^%@pokemon/(?<id>\\d+)"
+    
+    func regexPattern(domain: String) -> String {
+        switch self {
+        case .pokemon:
+            return String(format: rawValue, domain)
+        }
+    }
+}
+
 struct URLParser {
     enum TargetType {
         case pokemon(Pokemon)
         case undefined
     }
     
-    private enum RegexType: String, CaseIterable {
-        case pokemon = "^%@pokemon/(?<id>\\d+)"
-        
-        func regexPattern(domain: String) -> String {
-            switch self {
-            case .pokemon:
-                return String(format: rawValue, domain)
-            }
-        }
+    let domain: String
+    
+    init(domain: String) {
+        self.domain = domain
     }
     
-    let url: URL?
-    let targetType: TargetType
-    
-    init(url: URL, domain: String) {
-        self.url = url
+    func make(url: URL) -> TargetType {
         let urlString = url.absoluteString.lowercased()
         
         for type in RegexType.allCases {
@@ -38,12 +40,11 @@ struct URLParser {
                let id = Int(urlString[range]) {
                 switch type {
                 case .pokemon:
-                    self.targetType = .pokemon(Pokemon(id: id))
-                    return
+                    return .pokemon(Pokemon(id: id))
                 }
             }
         }
 
-        targetType = .undefined
+        return .undefined
     }
 }
