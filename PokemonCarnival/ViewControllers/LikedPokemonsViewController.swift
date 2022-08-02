@@ -16,10 +16,19 @@ class LikedPokemonsViewController: UIViewController {
     private var pokemons: [Pokemon] = [] {
         didSet {
             tableView.reloadData()
+            
+            if pokemons.isEmpty {
+                let stateView = StateView(frame: .zero)
+                view.addSubview(stateView, anchors: [.top(0), .leading(0), .trailing(0), .bottom(0)])
+                stateView.state = .empty
+                self.stateView = stateView
+            }
         }
     }
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
+    private var stateView: StateView?
+
     private lazy var managedObjectsFetcher: ManagedObjectsFetcher<ManagedPokenmon> = {
         let sortDescriptors = [NSSortDescriptor(key: #keyPath(ManagedPokenmon.itemId), ascending: true)]
         let predicate = NSPredicate(format: "%K = %d",  #keyPath(ManagedPokenmon.isLiked), true)

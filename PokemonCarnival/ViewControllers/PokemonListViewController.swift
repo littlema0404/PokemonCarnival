@@ -15,14 +15,11 @@ class PokemonListViewController: UIViewController {
     private let paginator: Paginator<AbstractPokemon>
 
     private var cancellables: Set<AnyCancellable> = []
-    private var pokemons: [Pokemon] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var pokemons: [Pokemon] = []
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
     private lazy var refreshControl = UIRefreshControl(frame: .zero)
+    private var stateView: StateView?
 
     private lazy var fetchedResultsManager: FetchedResultsManager<ManagedPokenmon, PokemonListViewController> = {
         let sortDescriptors = [NSSortDescriptor(key: #keyPath(ManagedPokenmon.itemId), ascending: true)]
@@ -73,6 +70,7 @@ class PokemonListViewController: UIViewController {
     
     private func setupBinding() {
         paginator.$items
+            .dropFirst(1)
             .map({ items -> Published<[Pokemon]>.Publisher.Output in
                 items.compactMap { item in
                     let converter = PokenmonConverter(from: item, domain: self.connectionService.networkProvider.apiEntryPoint)
@@ -90,8 +88,14 @@ class PokemonListViewController: UIViewController {
                     refreshControl.endRefreshing()
                 }
                 self?.tableView.stopLoading()
-                self?.pokemons = value
+                self?.updateContent(pokemons: value, isFailure: false)
             }).store(in: &cancellables)
+        
+        paginator.$isFailure
+            .dropFirst(1)
+            .sink(receiveValue: { [weak self] isFailure in
+            self?.updateContent(pokemons: self?.pokemons ?? [], isFailure: isFailure)
+        }).store(in: &cancellables)
     }
     
     private func setupRequests() {
@@ -101,8 +105,33 @@ class PokemonListViewController: UIViewController {
         paginator.loadNext()
     }
     
+    private func updateContent(pokemons: [Pokemon], isFailure: Bool) {
+        if isFailure || pokemons.isEmpty {
+            if stateView == nil {
+                let stateView = StateView(frame: .zero)
+                view.addSubview(stateView, anchors: [.top(0), .leading(0), .trailing(0), .bottom(0)])
+                self.stateView = stateView
+            }
+            stateView?.delegate = self
+            stateView?.state = isFailure ? .failure : .empty
+        } else if let stateView = stateView {
+            stateView.removeFromSuperview()
+            self.stateView = nil
+        }
+        
+        self.pokemons = pokemons
+        tableView.isHidden = pokemons.isEmpty
+        tableView.reloadData()
+    }
+    
     @objc private func refresh() {
+        if let stateView = stateView {
+            stateView.removeFromSuperview()
+            self.stateView = nil
+        }
+        
         paginator.reset()
+        pokemons = []
         tableView.reloadData()
         
         paginator.loadNext()
@@ -155,6 +184,13 @@ extension PokemonListViewController: PokemonTableViewCellDelegate {
         guard let index = tableView.indexPath(for: cell) else { return }
         
         pokemons[index.row].isLiked = cell.isLiked
+    }
+}
+
+extension PokemonListViewController: StateViewDelegate {
+    func stateViewConfirmButtonDidTap(_ stateView: StateView) {
+        tableView.startLoading()
+        refresh()
     }
 }
 
