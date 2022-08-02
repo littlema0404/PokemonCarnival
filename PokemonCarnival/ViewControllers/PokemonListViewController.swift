@@ -22,7 +22,8 @@ class PokemonListViewController: UIViewController {
     }
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
-    
+    private lazy var refreshControl = UIRefreshControl(frame: .zero)
+
     private lazy var fetchedResultsManager: FetchedResultsManager<ManagedPokenmon, PokemonListViewController> = {
         let sortDescriptors = [NSSortDescriptor(key: #keyPath(ManagedPokenmon.itemId), ascending: true)]
         return FetchedResultsManager(fetcher: ManagedObjectsFetcher(fetchRequest: ManagedPokenmon.fetchRequest(), sortDescriptors: sortDescriptors))
@@ -52,9 +53,17 @@ class PokemonListViewController: UIViewController {
     }
     
     private func customizeSubviews() {
+        view.backgroundColor = .white
+        
         navigationItem.title = "Pokemon Carnival"
         navigationItem.backButtonTitle = ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.text.square"), style: .plain, target: self, action: #selector(likeBarButtonItemTapped))
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: String(describing: PokemonTableViewCell.self))
+        tableView.dataSource = self
+        tableView.delegate = self
         
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: String(describing: PokemonTableViewCell.self))
         tableView.dataSource = self
@@ -77,12 +86,24 @@ class PokemonListViewController: UIViewController {
             })
             .saveToCoreData()
             .sink(receiveValue: { [weak self] value in
+                if let refreshControl = self?.refreshControl, refreshControl.isRefreshing {
+                    refreshControl.endRefreshing()
+                }
+                self?.tableView.stopLoading()
                 self?.pokemons = value
             }).store(in: &cancellables)
     }
     
     private func setupRequests() {
         fetchedResultsManager.delegate = self
+        
+        tableView.startLoading()
+        paginator.loadNext()
+    }
+    
+    @objc private func refresh() {
+        paginator.reset()
+        tableView.reloadData()
         
         paginator.loadNext()
     }
