@@ -26,17 +26,18 @@ extension NSManagedObjectContext {
 }
 
 extension NSManagedObject {
-    @discardableResult
-    func saveToDefaultContext() -> Bool {
+    func saveToDefaultContext(completion: ((Bool) -> Void)? = nil) {
         let defaultContext = NSManagedObjectContext.default
         if defaultContext.hasChanges {
-            do {
-                try defaultContext.save()
-                return true
-            } catch {
-                return false
+            defaultContext.perform {
+                do {
+                    try defaultContext.save()
+                    completion?(true)
+                } catch {
+                    completion?(false)
+                }
             }
         }
-        return false
+        completion?(true)
     }
 }
