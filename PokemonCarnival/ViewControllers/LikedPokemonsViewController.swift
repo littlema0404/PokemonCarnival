@@ -1,20 +1,18 @@
 //
-//  PokemonListViewController.swift
+//  LikedPokemonsViewController.swift
 //  PokemonCarnival
 //
-//  Created by littlema on 2022/7/31.
+//  Created by littlema on 2022/8/2.
 //
 
-import Combine
 import UIKit
+import CoreData
 
-class PokemonListViewController: UIViewController {
+class LikedPokemonsViewController: UIViewController {
     private let imageURLTemplate = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%i.png"
     private let cellHeight: CGFloat = 76
     private let connectionService: ConnectionService
-    private let paginator: Paginator<Pokemon>
 
-    private var cancellables: Set<AnyCancellable> = []
     private var pokemons: [Pokemon] = [] {
         didSet {
             tableView.reloadData()
@@ -22,10 +20,14 @@ class PokemonListViewController: UIViewController {
     }
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
+    private lazy var managedObjectsFetcher: ManagedObjectsFetcher<ManagedPokenmon> = {
+        let sortDescriptors = [NSSortDescriptor(key: #keyPath(ManagedPokenmon.itemId), ascending: true)]
+        let predicate = NSPredicate(format: "%K = %d",  #keyPath(ManagedPokenmon.isLiked), true)
+        return ManagedObjectsFetcher(fetchRequest: ManagedPokenmon.fetchRequest(), sortDescriptors: sortDescriptors, predicate: predicate)
+    }()
     
     init(connectionService: ConnectionService) {
         self.connectionService = connectionService
-        self.paginator = connectionService.pokemonsPaginator()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,8 +40,6 @@ class PokemonListViewController: UIViewController {
         
         setupSubviews()
         customizeSubviews()
-        setupBinding()
-        setupRequests()
     }
     
     private func setupSubviews() {
@@ -47,34 +47,17 @@ class PokemonListViewController: UIViewController {
     }
     
     private func customizeSubviews() {
-        navigationItem.title = "Pokemon Carnival"
-        navigationItem.backButtonTitle = ""
-        
+        pokemons = managedObjectsFetcher.fetchedObjects().map { Pokemon(managedPokenmon: $0) }
+        navigationItem.title = "Liked Pokemons"
+
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: String(describing: PokemonTableViewCell.self))
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = cellHeight
     }
-    
-    private func setupBinding() {
-        paginator.$items
-            .saveToCoreData()
-            .sink(receiveValue: { [weak self] value in
-            self?.pokemons = value
-        }).store(in: &cancellables)
-    }
-    
-    private func setupRequests() {
-        paginator.loadNext()
-    }
-    
-    @objc private func likeBarButtonItemTapped() {
-        let viewController = LikedPokemonsViewController(connectionService: connectionService)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
 }
 
-extension PokemonListViewController: UITableViewDataSource {
+extension LikedPokemonsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         pokemons.count
     }
@@ -94,13 +77,7 @@ extension PokemonListViewController: UITableViewDataSource {
     }
 }
 
-extension PokemonListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if pokemons.count - indexPath.row < 3 {
-            paginator.loadNext()
-        }
-    }
-    
+extension LikedPokemonsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -111,7 +88,7 @@ extension PokemonListViewController: UITableViewDelegate {
     }
 }
 
-extension PokemonListViewController: PokemonTableViewCellDelegate {
+extension LikedPokemonsViewController: PokemonTableViewCellDelegate {
     func pokemonTableViewCellLikeButtonDidTapped(cell: PokemonTableViewCell) {
         guard let index = tableView.indexPath(for: cell) else { return }
         

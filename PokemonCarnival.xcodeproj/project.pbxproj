@@ -31,6 +31,7 @@
 		74F68EEE2898B501003DF0C6 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EED2898B500003DF0C6 /* PokemonDetailViewController.swift */; };
 		74F68EF22898F6AC003DF0C6 /* FetchedResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EF12898F6AC003DF0C6 /* FetchedResultsManager.swift */; };
 		74F68EF62898FB6D003DF0C6 /* ManagedObjectsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EF52898FB6D003DF0C6 /* ManagedObjectsFetcher.swift */; };
+		74F68EF82898FBC1003DF0C6 /* LikedPokemonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EF72898FBC1003DF0C6 /* LikedPokemonsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		74F68EED2898B500003DF0C6 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
 		74F68EF12898F6AC003DF0C6 /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
 		74F68EF52898FB6D003DF0C6 /* ManagedObjectsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectsFetcher.swift; sourceTree = "<group>"; };
+		74F68EF72898FBC1003DF0C6 /* LikedPokemonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedPokemonsViewController.swift; sourceTree = "<group>"; };
 		A6B8809127109E79701028C1 /* Pods-PokemonCarnival.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCarnival.debug.xcconfig"; path = "Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival.debug.xcconfig"; sourceTree = "<group>"; };
 		E14211843299C3D33CAA400F /* Pods_PokemonCarnival.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonCarnival.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -166,6 +168,7 @@
 			children = (
 				74C9D11C28962ABD00DDB305 /* PokemonListViewController.swift */,
 				74F68EED2898B500003DF0C6 /* PokemonDetailViewController.swift */,
+				74F68EF72898FBC1003DF0C6 /* LikedPokemonsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			files = (
 				74F68EDE28982B6F003DF0C6 /* PageResultsTargetType.swift in Sources */,
 				74F68EE328982D72003DF0C6 /* CoreData+Extensions.swift in Sources */,
+				74F68EF82898FBC1003DF0C6 /* LikedPokemonsViewController.swift in Sources */,
 				74F68ED828982A4F003DF0C6 /* RequestBuilderPlugin.swift in Sources */,
 				743A83162896457000036D2D /* PokemonEndPoint.swift in Sources */,
 				74F68EDB28982A70003DF0C6 /* PageResult.swift in Sources */,
