@@ -12,12 +12,18 @@ struct Pokemon: Codable {
         case _id = "id"
         case name
         case url
+        case height
+        case weight
+        case types
     }
     
     private var _id: Int?
-    
     var name: String?
     var url: String?
+    var height: Int?
+    var weight: Int?
+    var types: [ItemType]?
+    
     var isLiked: Bool? {
         didSet {
             guard let isLiked = isLiked,
@@ -41,5 +47,27 @@ extension Pokemon: Saveable {
         let managedPokemon = ManagedPokenmon.findFirstOrCreate(id: id)
         managedPokemon.configure(with: self)
         managedPokemon.saveToDefaultContext()
+    }
+}
+
+extension Pokemon {
+    struct ItemType: Codable {
+        enum CodingKeys: String, CodingKey {
+            case slot
+            case `type`
+        }
+        
+        var slot: Int?
+        var `type`: TypeContent?
+    }
+    
+    struct TypeContent: Codable {
+        enum CodingKeys: String, CodingKey {
+            case name
+            case url
+        }
+        
+        var name: String?
+        var url: String?
     }
 }
