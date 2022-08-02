@@ -29,6 +29,7 @@ class PokemonDetailViewController: UIViewController {
     private lazy var scrollView = UIScrollView(frame: .zero)
     private lazy var stackView = UIStackView(frame: .zero)
     private lazy var coverImageView = UIImageView(frame: .zero)
+    private lazy var thumbnailImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
     private lazy var idLabel = UILabel(frame: .zero)
     private lazy var nameLabel = UILabel(frame: .zero)
     private lazy var heightLabel = UILabel(frame: .zero)
@@ -65,7 +66,12 @@ class PokemonDetailViewController: UIViewController {
         coverImageView.activate(anchors: [.relative(attribute: .height, relatedTo: .width, constant: 0)], relativeTo: coverImageView)
         
         let containerView = UIView(frame: .zero)
-        containerView.addSubview(nameLabel, anchors: [.top(0), .leading(0), .bottom(0)])
+        containerView.addSubview(thumbnailImageView, anchors: [.width(32), .height(32), .centerY(0)])
+        thumbnailImageView.activate(anchors: [.relative(attribute: .left, relatedTo: .left, constant: 0)], relativeTo: containerView)
+
+        containerView.addSubview(nameLabel, anchors: [.top(0), .bottom(0)])
+        nameLabel.activate(anchors: [.relative(attribute: .left, relatedTo: .right, constant: 5)], relativeTo: thumbnailImageView)
+
         containerView.addSubview(likeButton, anchors: [.trailing(0), .width(36), .height(36)])
         likeButton.activate(anchors: [.centerY(0)], relativeTo: containerView)
         likeButton.activate(anchors: [.relative(attribute: .leading, relatedTo: .trailing, constant: 5)], relativeTo: nameLabel)
@@ -90,6 +96,8 @@ class PokemonDetailViewController: UIViewController {
         coverImageView.backgroundColor = UIColor(white: 0.9, alpha: 0.4)
         coverImageView.contentMode = .scaleAspectFill
         stackView.setCustomSpacing(10, after: coverImageView)
+        
+        thumbnailImageView.contentMode = .scaleAspectFill
         
         likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
