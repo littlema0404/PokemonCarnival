@@ -23,6 +23,11 @@ class PokemonListViewController: UIViewController {
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
     
+    private lazy var fetchedResultsManager: FetchedResultsManager<ManagedPokenmon, PokemonListViewController> = {
+        let sortDescriptors = [NSSortDescriptor(key: #keyPath(ManagedPokenmon.itemId), ascending: true)]
+        return FetchedResultsManager(fetcher: ManagedObjectsFetcher(fetchRequest: ManagedPokenmon.fetchRequest(), sortDescriptors: sortDescriptors))
+    }()
+    
     init(connectionService: ConnectionService) {
         self.connectionService = connectionService
         self.paginator = connectionService.pokemonsPaginator()
@@ -49,6 +54,7 @@ class PokemonListViewController: UIViewController {
     private func customizeSubviews() {
         navigationItem.title = "Pokemon Carnival"
         navigationItem.backButtonTitle = ""
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.text.square"), style: .plain, target: self, action: #selector(likeBarButtonItemTapped))
         
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: String(describing: PokemonTableViewCell.self))
         tableView.dataSource = self
@@ -65,6 +71,8 @@ class PokemonListViewController: UIViewController {
     }
     
     private func setupRequests() {
+        fetchedResultsManager.delegate = self
+        
         paginator.loadNext()
     }
     
@@ -116,5 +124,18 @@ extension PokemonListViewController: PokemonTableViewCellDelegate {
         guard let index = tableView.indexPath(for: cell) else { return }
         
         pokemons[index.row].isLiked = cell.isLiked
+    }
+}
+
+extension PokemonListViewController: FetchedResultsManagerDelegate {
+    typealias Object = ManagedPokenmon
+    
+    func managerDidUpdateObject(_ object: ManagedPokenmon) {
+        let pokemon = Pokemon(managedPokenmon: object)
+        
+        guard let index = pokemons.firstIndex(where: { $0.id == pokemon.id }),
+              pokemons[index].isLiked != pokemon.isLiked else { return }
+        pokemons[index] = pokemon
+        tableView.reloadData()
     }
 }
