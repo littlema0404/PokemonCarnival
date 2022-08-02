@@ -13,6 +13,14 @@ class ConnectionService {
     private lazy var decoder = JSONDecoder()
     private lazy var networkProvider = NetworkProvider(forTesting: false)
     
+    func fetchPokemon(id: String) -> AnyPublisher<Pokemon, Error> {
+        let endpoint = PokemonEndPoint.fetchPokemon(id: id)
+        return networkProvider.requestPublisher(endPoint: endpoint)
+            .map { $0.data }
+            .decode(type: Pokemon.self, decoder: decoder)
+            .eraseToAnyPublisher()
+    }
+    
     func pokemonsPaginator() -> Paginator<Pokemon> {
         Paginator(networkProvider: networkProvider, decoder: decoder, endPoint: PokemonEndPoint.fetchPokemons)
     }
