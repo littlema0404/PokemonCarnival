@@ -18,14 +18,17 @@ class PokemonDetailViewController: UIViewController {
             nameLabel.text = "\(pokemon.name ?? "-")"
             heightLabel.text = pokemon.height.flatMap { "身高： \($0 * 10.0) cm" }
             weightLabel.text = pokemon.weight.flatMap { "體重： \($0 / 10.0) kg" }
-            let types = pokemon.types?.compactMap { $0.type?.name }.joined(separator: ", ") ?? "-"
+            let types = pokemon.types?.compactMap { $0.name }.joined(separator: ", ") ?? "-"
             typeLabel.text = "屬性： \(types)"
+            
+            coverImageView.setImage(url: pokemon.largeImage.flatMap { URL(string: $0) })
+            thumbnailImageView.setImage(url: pokemon.frontDefaultImage.flatMap { URL(string: $0) })
         }
     }
 
     private lazy var scrollView = UIScrollView(frame: .zero)
     private lazy var stackView = UIStackView(frame: .zero)
-    private lazy var imageView = UIImageView(frame: .zero)
+    private lazy var coverImageView = UIImageView(frame: .zero)
     private lazy var idLabel = UILabel(frame: .zero)
     private lazy var nameLabel = UILabel(frame: .zero)
     private lazy var heightLabel = UILabel(frame: .zero)
@@ -58,8 +61,8 @@ class PokemonDetailViewController: UIViewController {
         scrollView.addSubview(stackView, anchors: [.top(0), .bottom(0), .centerX(0)])
         stackView.activate(anchors: [.relative(attribute: .width, relatedTo: .width, constant: -40)], relativeTo: scrollView)
         
-        stackView.addArrangedSubview(imageView)
-        imageView.activate(anchors: [.relative(attribute: .height, relatedTo: .width, constant: 0)], relativeTo: imageView)
+        stackView.addArrangedSubview(coverImageView)
+        coverImageView.activate(anchors: [.relative(attribute: .height, relatedTo: .width, constant: 0)], relativeTo: coverImageView)
         
         let containerView = UIView(frame: .zero)
         containerView.addSubview(nameLabel, anchors: [.top(0), .leading(0), .bottom(0)])
@@ -84,10 +87,9 @@ class PokemonDetailViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 5
         
-        imageView.contentMode = .scaleAspectFill
-        let image = String(format: imageURLTemplate, pokemonId)
-        imageView.setImage(url: URL(string: image))
-        stackView.setCustomSpacing(10, after: imageView)
+        coverImageView.backgroundColor = UIColor(white: 0.9, alpha: 0.4)
+        coverImageView.contentMode = .scaleAspectFill
+        stackView.setCustomSpacing(10, after: coverImageView)
         
         likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)

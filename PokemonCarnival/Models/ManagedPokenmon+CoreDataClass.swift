@@ -44,6 +44,6 @@ public class ManagedPokenmon: NSManagedObject {
         if let like = pokemon.isLiked {
             self.isLiked = like
         }
-        types = NSArray(array: pokemon.types?.compactMap { $0.name } ?? [])
+        types = NSArray(array: pokemon.types ?? [])
     }
 }

@@ -14,6 +14,7 @@ struct Pokemon: Codable {
         case height
         case weight
         case types
+        case sprites
     }
     
     var id: Int
@@ -21,6 +22,15 @@ struct Pokemon: Codable {
     var height: Double?
     var weight: Double?
     var types: [ItemType]?
+    var sprites: Sprites?
+    
+    var frontDefaultImage: String? {
+        sprites?.frontDefault
+    }
+    
+    var largeImage: String? {
+        sprites?.other?.officialArtworkFrontDefault
+    }
     
     var isLiked: Bool? {
         didSet {
@@ -42,7 +52,7 @@ struct Pokemon: Codable {
         height = managedPokenmon.height
         weight = managedPokenmon.weight
         isLiked = managedPokenmon.isLiked
-        types = managedPokenmon.types?.compactMap { $0 as? String }.map { ItemType(name: $0) }
+        types = managedPokenmon.types as? [ItemType]
     }
 }
 
@@ -57,25 +67,53 @@ extension Pokemon: Saveable {
 extension Pokemon {
     struct ItemType: Codable {
         enum CodingKeys: String, CodingKey {
-            case slot
             case `type`
-        }
-        
-        var slot: Int?
-        var `type`: TypeContent?
-        
-        init(name: String) {
-            type = TypeContent(name: name, url: nil)
-        }
-    }
-    
-    struct TypeContent: Codable {
-        enum CodingKeys: String, CodingKey {
             case name
-            case url
         }
         
         var name: String?
-        var url: String?
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let type = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .type)
+            name = try? type?.decode(String.self, forKey: .name)
+        }
+        
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            var type = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .type)
+            try type.encode(name, forKey: .name)
+        }
+    }
+
+    struct Sprites: Codable {
+        enum CodingKeys: String, CodingKey {
+            case frontDefault = "front_default"
+            case other
+        }
+
+        var frontDefault: String?
+        var other: Other?
+    }
+
+    struct Other: Codable {
+        enum CodingKeys: String, CodingKey {
+            case officialArtwork = "official-artwork"
+            case officialArtworkFrontDefault = "front_default"
+        }
+
+        var officialArtworkFrontDefault: String?
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let officialArtwork = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .officialArtwork)
+            officialArtworkFrontDefault = try? officialArtwork?.decode(String.self, forKey: .officialArtworkFrontDefault)
+        }
+        
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            var officialArtwork = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .officialArtwork)
+            try officialArtwork.encode(officialArtworkFrontDefault, forKey: .officialArtworkFrontDefault)
+        }
     }
 }
