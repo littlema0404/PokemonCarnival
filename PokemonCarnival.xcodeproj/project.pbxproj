@@ -19,6 +19,9 @@
 		74A6BD7128964BE3003164C5 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A6BD7028964BE3003164C5 /* UIImageView+Extension.swift */; };
 		74AC25802899A01500377CDD /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC257E2899A01500377CDD /* URLParser.swift */; };
 		74AC25812899A01500377CDD /* GenericItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC257F2899A01500377CDD /* GenericItem.swift */; };
+		74AC25832899A07200377CDD /* UpdateLikeVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC25822899A07200377CDD /* UpdateLikeVisitor.swift */; };
+		74AC25852899A4D800377CDD /* ItemVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC25842899A4D800377CDD /* ItemVisitor.swift */; };
+		74AC25872899A4EA00377CDD /* Likeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC25862899A4EA00377CDD /* Likeable.swift */; };
 		74C1A9D72899792B00AA811B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1A9D62899792B00AA811B /* UIView+Extensions.swift */; };
 		74C1A9D928997ECC00AA811B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1A9D828997ECC00AA811B /* StateView.swift */; };
 		74C9D1192896222200DDB305 /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */; };
@@ -53,6 +56,9 @@
 		74A6BD7028964BE3003164C5 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		74AC257E2899A01500377CDD /* URLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
 		74AC257F2899A01500377CDD /* GenericItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericItem.swift; sourceTree = "<group>"; };
+		74AC25822899A07200377CDD /* UpdateLikeVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLikeVisitor.swift; sourceTree = "<group>"; };
+		74AC25842899A4D800377CDD /* ItemVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVisitor.swift; sourceTree = "<group>"; };
+		74AC25862899A4EA00377CDD /* Likeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Likeable.swift; sourceTree = "<group>"; };
 		74C1A9D62899792B00AA811B /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		74C1A9D828997ECC00AA811B /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutDSL.swift; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 				74AC257E2899A01500377CDD /* URLParser.swift */,
 				74F68EF12898F6AC003DF0C6 /* FetchedResultsManager.swift */,
 				74F68EF52898FB6D003DF0C6 /* ManagedObjectsFetcher.swift */,
+				74AC25822899A07200377CDD /* UpdateLikeVisitor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -200,6 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				74F68EEB2898B27E003DF0C6 /* Saveable.swift */,
+				74AC25842899A4D800377CDD /* ItemVisitor.swift */,
+				74AC25862899A4EA00377CDD /* Likeable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -327,12 +336,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74AC25872899A4EA00377CDD /* Likeable.swift in Sources */,
 				74F68EDE28982B6F003DF0C6 /* PageResultsTargetType.swift in Sources */,
 				74F68EE328982D72003DF0C6 /* CoreData+Extensions.swift in Sources */,
 				74C1A9D72899792B00AA811B /* UIView+Extensions.swift in Sources */,
 				74F68EF82898FBC1003DF0C6 /* LikedPokemonsViewController.swift in Sources */,
+				74AC25832899A07200377CDD /* UpdateLikeVisitor.swift in Sources */,
 				74F68ED828982A4F003DF0C6 /* RequestBuilderPlugin.swift in Sources */,
 				743A83162896457000036D2D /* PokemonEndPoint.swift in Sources */,
+				74AC25852899A4D800377CDD /* ItemVisitor.swift in Sources */,
 				74F68EDB28982A70003DF0C6 /* PageResult.swift in Sources */,
 				74032DBB28956EC800D83F39 /* PokemonCarnival.xcdatamodeld in Sources */,
 				74F68EF62898FB6D003DF0C6 /* ManagedObjectsFetcher.swift in Sources */,

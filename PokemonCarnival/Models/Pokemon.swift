@@ -36,9 +36,7 @@ struct Pokemon: Codable {
         didSet {
             guard let isLiked = isLiked, isLiked != oldValue else { return }
             
-            let managedPokenmon = ManagedPokenmon.findFirstOrCreate(id: id)
-            managedPokenmon.isLiked = isLiked
-            managedPokenmon.saveToDefaultContext()
+            accept(visitor: UpdateLikeVisitor(like: isLiked))
         }
     }
     
@@ -62,6 +60,13 @@ extension Pokemon: Saveable {
         let managedPokemon = ManagedPokenmon.findFirstOrCreate(id: id)
         managedPokemon.configure(with: self)
         managedPokemon.saveToDefaultContext()
+    }
+}
+
+extension Pokemon: Likeable {
+    @discardableResult
+    func accept<V>(visitor: V) -> V.ReturnType where V : ItemVisitor {
+        visitor.visitor(from: self)
     }
 }
 
