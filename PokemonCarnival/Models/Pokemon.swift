@@ -31,3 +31,12 @@ struct Pokemon: Codable {
         url.flatMap { URL(string: $0) }?.lastPathComponent
     }
 }
+
+extension Pokemon: Saveable {
+    func saveToCoreData() {
+        guard let id = id else { return }
+        let managedPokemon = ManagedPokenmon.findFirstOrCreate(id: id)
+        managedPokemon.configure(with: self)
+        managedPokemon.saveToDefaultContext()
+    }
+}

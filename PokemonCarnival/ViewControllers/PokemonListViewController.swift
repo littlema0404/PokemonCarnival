@@ -56,7 +56,9 @@ class PokemonListViewController: UIViewController {
     }
     
     private func setupBinding() {
-        paginator.$items.sink(receiveValue: { [weak self] value in
+        paginator.$items
+            .saveToCoreData()
+            .sink(receiveValue: { [weak self] value in
             self?.pokemons = value
         }).store(in: &cancellables)
     }

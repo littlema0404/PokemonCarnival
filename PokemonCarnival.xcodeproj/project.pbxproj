@@ -26,6 +26,8 @@
 		74F68EDF28982B6F003DF0C6 /* Paginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EDD28982B6F003DF0C6 /* Paginator.swift */; };
 		74F68EE128982D2B003DF0C6 /* ManagedPokenmon+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EE028982D2B003DF0C6 /* ManagedPokenmon+CoreDataClass.swift */; };
 		74F68EE328982D72003DF0C6 /* CoreData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EE228982D72003DF0C6 /* CoreData+Extensions.swift */; };
+		74F68EE72898AD6E003DF0C6 /* Publisher+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EE62898AD6E003DF0C6 /* Publisher+Extenstions.swift */; };
+		74F68EEC2898B27E003DF0C6 /* Saveable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F68EEB2898B27E003DF0C6 /* Saveable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		74F68EDD28982B6F003DF0C6 /* Paginator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paginator.swift; sourceTree = "<group>"; };
 		74F68EE028982D2B003DF0C6 /* ManagedPokenmon+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedPokenmon+CoreDataClass.swift"; sourceTree = "<group>"; };
 		74F68EE228982D72003DF0C6 /* CoreData+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Extensions.swift"; sourceTree = "<group>"; };
+		74F68EE62898AD6E003DF0C6 /* Publisher+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extenstions.swift"; sourceTree = "<group>"; };
+		74F68EEB2898B27E003DF0C6 /* Saveable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saveable.swift; sourceTree = "<group>"; };
 		A6B8809127109E79701028C1 /* Pods-PokemonCarnival.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonCarnival.debug.xcconfig"; path = "Target Support Files/Pods-PokemonCarnival/Pods-PokemonCarnival.debug.xcconfig"; sourceTree = "<group>"; };
 		E14211843299C3D33CAA400F /* Pods_PokemonCarnival.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonCarnival.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -95,6 +99,7 @@
 		74032DAF28956EC800D83F39 /* PokemonCarnival */ = {
 			isa = PBXGroup;
 			children = (
+				74F68EEA2898B272003DF0C6 /* Protocols */,
 				743A830E289644E100036D2D /* Models */,
 				742403D928962DC90032DF2F /* Views */,
 				74C9D11B28962A8B00DDB305 /* ViewControllers */,
@@ -141,8 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				74C9D1182896222200DDB305 /* AutoLayoutDSL.swift */,
-				74A6BD7028964BE3003164C5 /* UIImageView+Extension.swift */,
 				74F68EE228982D72003DF0C6 /* CoreData+Extensions.swift */,
+				74F68EE62898AD6E003DF0C6 /* Publisher+Extenstions.swift */,
+				74A6BD7028964BE3003164C5 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -164,6 +170,14 @@
 				74F68EDD28982B6F003DF0C6 /* Paginator.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		74F68EEA2898B272003DF0C6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				74F68EEB2898B27E003DF0C6 /* Saveable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		DCCEC03FF34BD097A79C454B /* Pods */ = {
@@ -303,8 +317,10 @@
 				74F68ED728982A4F003DF0C6 /* NetworkProvider.swift in Sources */,
 				742403DB28962FC20032DF2F /* PokemonTableViewCell.swift in Sources */,
 				74C9D1192896222200DDB305 /* AutoLayoutDSL.swift in Sources */,
+				74F68EEC2898B27E003DF0C6 /* Saveable.swift in Sources */,
 				74F68EE128982D2B003DF0C6 /* ManagedPokenmon+CoreDataClass.swift in Sources */,
 				74F68EDF28982B6F003DF0C6 /* Paginator.swift in Sources */,
+				74F68EE72898AD6E003DF0C6 /* Publisher+Extenstions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
