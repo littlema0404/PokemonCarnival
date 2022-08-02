@@ -16,8 +16,10 @@ class PokemonDetailViewController: UIViewController {
         didSet {
             idLabel.text = String(format: "編號： %03d", pokemon.id)
             nameLabel.text = "\(pokemon.name ?? "-")"
-            heightLabel.text = pokemon.height.flatMap { "身高： \($0 * 10.0) cm" }
-            weightLabel.text = pokemon.weight.flatMap { "體重： \($0 / 10.0) kg" }
+            let height = pokemon.height.flatMap { String($0 * 10) } ?? "-"
+            heightLabel.text = "身高： \(height) cm"
+            let weight = pokemon.weight.flatMap { String($0 / 10) } ?? "-"
+            weightLabel.text = "體重： \(weight) kg"
             let types = pokemon.types?.compactMap { $0.name }.joined(separator: ", ") ?? "-"
             typeLabel.text = "屬性： \(types)"
             
@@ -69,16 +71,15 @@ class PokemonDetailViewController: UIViewController {
         stackView.addArrangedSubview(coverImageView)
         coverImageView.activate(anchors: [.relative(attribute: .height, relatedTo: .width, constant: 0)], relativeTo: coverImageView)
         
-        let containerView = UIView(frame: .zero)
-        containerView.addSubview(thumbnailImageView, anchors: [.width(32), .height(32), .centerY(0)])
-        thumbnailImageView.activate(anchors: [.relative(attribute: .left, relatedTo: .left, constant: 0)], relativeTo: containerView)
-
-        containerView.addSubview(nameLabel, anchors: [.top(0), .bottom(0)])
-        nameLabel.activate(anchors: [.relative(attribute: .left, relatedTo: .right, constant: 5)], relativeTo: thumbnailImageView)
-
-        containerView.addSubview(likeButton, anchors: [.trailing(0), .width(36), .height(36)])
-        likeButton.activate(anchors: [.centerY(0)], relativeTo: containerView)
-        likeButton.activate(anchors: [.relative(attribute: .leading, relatedTo: .trailing, constant: 5)], relativeTo: nameLabel)
+        let containerView = UIStackView(arrangedSubviews: [thumbnailImageView, nameLabel, likeButton])
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.axis = .horizontal
+        containerView.alignment = .center
+        containerView.distribution = .fill
+        containerView.spacing = 5
+        thumbnailImageView.activate(anchors: [.width(32), .height(32)])
+        nameLabel.activate(anchors: [.top(0), .bottom(0)], relativeTo: containerView)
+        likeButton.activate(anchors: [.width(36), .height(36)])
         
         let stackViewSubviews = [containerView, idLabel, heightLabel, weightLabel, typeLabel]
         stackViewSubviews.forEach { stackView.addArrangedSubview($0) }
