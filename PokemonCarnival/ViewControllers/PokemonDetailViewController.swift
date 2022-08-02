@@ -75,6 +75,7 @@ class PokemonDetailViewController: UIViewController {
     
     private func customizeSubviews() {
         if let managedPokenmon = ManagedPokenmon.query(id: pokemonId) {
+            pokemon = Pokemon(managedPokenmon: managedPokenmon)
             likeButton.isSelected = managedPokenmon.isLiked
         }
         

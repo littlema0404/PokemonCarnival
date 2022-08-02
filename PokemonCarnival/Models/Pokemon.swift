@@ -39,6 +39,16 @@ struct Pokemon: Codable {
     var id: Int? {
         _id ?? url.flatMap { URL(string: $0)?.lastPathComponent }.flatMap { Int($0) }
     }
+    
+    init(managedPokenmon: ManagedPokenmon) {
+        _id = Int(managedPokenmon.itemId)
+        name = managedPokenmon.name
+        url = managedPokenmon.url
+        height = managedPokenmon.height
+        weight = managedPokenmon.weight
+        isLiked = managedPokenmon.isLiked
+        types = managedPokenmon.types?.compactMap { $0 as? String }.map { ItemType(name: $0) }
+    }
 }
 
 extension Pokemon: Saveable {
