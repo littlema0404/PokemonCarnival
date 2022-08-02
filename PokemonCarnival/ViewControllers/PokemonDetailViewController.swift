@@ -9,10 +9,11 @@ import UIKit
 import Combine
 
 class PokemonDetailViewController: UIViewController {
-    private let imageURLTemplate = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/%@.png"
+    private let imageURLTemplate = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/%i.png"
     private let connectionService: ConnectionService
 
     private var cancellables: Set<AnyCancellable> = []
+    private var pokemonId: Int
     private var pokemonId: String
     private var pokemon: Pokemon?
 

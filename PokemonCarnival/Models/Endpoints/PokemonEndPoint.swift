@@ -9,7 +9,7 @@ import Moya
 
 enum PokemonEndPoint {
     case fetchPokemons
-    case fetchPokemon(id: String)
+    case fetchPokemon(id: Int)
 }
 
 extension PokemonEndPoint: TargetType {

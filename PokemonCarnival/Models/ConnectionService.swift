@@ -13,7 +13,7 @@ class ConnectionService {
     private lazy var decoder = JSONDecoder()
     private lazy var networkProvider = NetworkProvider(forTesting: false)
     
-    func fetchPokemon(id: String) -> AnyPublisher<Pokemon, Error> {
+    func fetchPokemon(id: Int) -> AnyPublisher<Pokemon, Error> {
         let endpoint = PokemonEndPoint.fetchPokemon(id: id)
         return networkProvider.requestPublisher(endPoint: endpoint)
             .map { $0.data }

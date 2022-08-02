@@ -11,9 +11,9 @@ import CoreData
 
 @objc(ManagedPokenmon)
 public class ManagedPokenmon: NSManagedObject {
-    static func query(id: String) -> ManagedPokenmon? {
+    static func query(id: Int) -> ManagedPokenmon? {
         let request = ManagedPokenmon.fetchRequest()
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(ManagedPokenmon.itemId), id)
+        let predicate = NSPredicate(format: "%K == %i", #keyPath(ManagedPokenmon.itemId), id)
         request.predicate =  predicate
         do {
             return try NSManagedObjectContext.default.fetch(request).first
@@ -22,18 +22,20 @@ public class ManagedPokenmon: NSManagedObject {
         }
     }
     
-    static func findFirstOrCreate(id: String) -> ManagedPokenmon {
+    static func findFirstOrCreate(id: Int) -> ManagedPokenmon {
         if let managedPokenmon = query(id: id) {
             return managedPokenmon
         } else {
             let managedPokenmon = ManagedPokenmon(context: NSManagedObjectContext.default)
-            managedPokenmon.itemId = id
+            managedPokenmon.itemId = Int32(id)
             return managedPokenmon
         }
     }
 
     func configure(with pokemon: Pokemon) {
-        itemId = pokemon.id
+        if let id = pokemon.id {
+            itemId = Int32(id)
+        }
         name = pokemon.name
         url = pokemon.url
         if let like = pokemon.isLiked {

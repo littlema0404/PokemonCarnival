@@ -30,8 +30,8 @@ struct Pokemon: Codable {
         }
     }
     
-    var id: String? {
-        _id.flatMap { String($0) } ?? url.flatMap { URL(string: $0) }?.lastPathComponent
+    var id: Int? {
+        _id ?? url.flatMap { URL(string: $0)?.lastPathComponent }.flatMap { Int($0) }
     }
 }
 

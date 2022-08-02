@@ -9,7 +9,7 @@ import Combine
 import UIKit
 
 class PokemonListViewController: UIViewController {
-    private let imageURLTemplate = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%@.png"
+    private let imageURLTemplate = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%i.png"
     private let cellHeight: CGFloat = 76
     private let connectionService: ConnectionService
     private let paginator: Paginator<Pokemon>
