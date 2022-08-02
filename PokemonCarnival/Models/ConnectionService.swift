@@ -21,7 +21,7 @@ class ConnectionService {
             .eraseToAnyPublisher()
     }
     
-    func pokemonsPaginator() -> Paginator<AbstractPokemon> {
+    func pokemonsPaginator() -> Paginator<GenericItem> {
         Paginator(networkProvider: networkProvider, decoder: decoder, endPoint: PokemonEndPoint.fetchPokemons)
     }
 }

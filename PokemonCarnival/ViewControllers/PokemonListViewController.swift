@@ -12,7 +12,7 @@ class PokemonListViewController: UIViewController {
     private let imageURLTemplate = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%i.png"
     private let cellHeight: CGFloat = 76
     private let connectionService: ConnectionService
-    private let paginator: Paginator<AbstractPokemon>
+    private let paginator: Paginator<GenericItem>
 
     private var cancellables: Set<AnyCancellable> = []
     private var pokemons: [Pokemon] = []
@@ -73,13 +73,17 @@ class PokemonListViewController: UIViewController {
             .dropFirst(1)
             .map({ items -> Published<[Pokemon]>.Publisher.Output in
                 items.compactMap { item in
-                    let converter = PokenmonConverter(from: item, domain: self.connectionService.networkProvider.apiEntryPoint)
-                    switch converter.type {
-                    case .pokemon(let pokemon):
-                        return pokemon
-                    case .undefined:
-                        return nil
+                    if let url = item.url.flatMap({ URL(string: $0) }) {
+                        let parser = URLParser(url: url, domain: self.connectionService.networkProvider.apiEntryPoint)
+                        switch parser.targetType {
+                        case .pokemon(var pokemon):
+                            pokemon.name = item.name
+                            return pokemon
+                        case .undefined:
+                            break
+                        }
                     }
+                    return nil
                 }
             })
             .saveToCoreData()
