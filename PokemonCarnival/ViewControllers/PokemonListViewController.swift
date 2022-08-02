@@ -48,6 +48,7 @@ class PokemonListViewController: UIViewController {
     
     private func customizeSubviews() {
         navigationItem.title = "Pokemon Carnival"
+        navigationItem.backButtonTitle = ""
         
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: String(describing: PokemonTableViewCell.self))
         tableView.dataSource = self
@@ -93,6 +94,15 @@ extension PokemonListViewController: UITableViewDelegate {
         if pokemons.count - indexPath.row < 3 {
             paginator.loadNext()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let pokemonId = pokemons[indexPath.row].id else { return }
+        
+        let viewController = PokemonDetailViewController(pokemonId: pokemonId, connectionService: connectionService)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

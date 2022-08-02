@@ -9,9 +9,12 @@ import Foundation
 
 struct Pokemon: Codable {
     enum CodingKeys: String, CodingKey {
+        case _id = "id"
         case name
         case url
     }
+    
+    private var _id: Int?
     
     var name: String?
     var url: String?
@@ -28,7 +31,7 @@ struct Pokemon: Codable {
     }
     
     var id: String? {
-        url.flatMap { URL(string: $0) }?.lastPathComponent
+        _id.flatMap { String($0) } ?? url.flatMap { URL(string: $0) }?.lastPathComponent
     }
 }
 
