@@ -38,8 +38,15 @@ public class ManagedPokenmon: NSManagedObject {
         }
         name = pokemon.name
         url = pokemon.url
+        if let height = pokemon.height {
+            self.height = height
+        }
+        if let weight = pokemon.weight {
+            self.weight = weight
+        }
         if let like = pokemon.isLiked {
             self.isLiked = like
         }
+        types = NSArray(array: pokemon.types?.compactMap { $0.type?.name } ?? [])
     }
 }

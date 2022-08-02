@@ -20,8 +20,8 @@ struct Pokemon: Codable {
     private var _id: Int?
     var name: String?
     var url: String?
-    var height: Int?
-    var weight: Int?
+    var height: Double?
+    var weight: Double?
     var types: [ItemType]?
     
     var isLiked: Bool? {
@@ -59,6 +59,10 @@ extension Pokemon {
         
         var slot: Int?
         var `type`: TypeContent?
+        
+        init(name: String) {
+            type = TypeContent(name: name, url: nil)
+        }
     }
     
     struct TypeContent: Codable {
