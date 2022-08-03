@@ -8,11 +8,7 @@
 import Foundation
 
 class UpdateLikeVisitor: ItemVisitor {
-    let like: Bool
-    
-    init(like: Bool) {
-        self.like = like
-    }
+    var like = false
     
     func visitor(from item: Pokemon) -> Bool {
         let managedPokenmon = ManagedPokenmon.findFirstOrCreate(id: item.id)

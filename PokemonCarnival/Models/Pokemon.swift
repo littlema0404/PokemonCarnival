@@ -24,6 +24,8 @@ struct Pokemon: Codable {
     var types: [ItemType]?
     var sprites: Sprites?
     
+    var updateLikeVisitor = UpdateLikeVisitor()
+
     var frontDefaultImage: String? {
         sprites?.frontDefault
     }
@@ -36,7 +38,8 @@ struct Pokemon: Codable {
         didSet {
             guard let isLiked = isLiked, isLiked != oldValue else { return }
             
-            accept(visitor: UpdateLikeVisitor(like: isLiked))
+            updateLikeVisitor.like = isLiked
+            accept(visitor: updateLikeVisitor)
         }
     }
     
