@@ -30,6 +30,10 @@ class Paginator<T: Codable>: NSObject {
     }
     
     func loadNext() {
+        if isLoading || isReachEnd {
+            return
+        }
+        
         isLoading = true
         cancellable = makeRequest().sink(receiveCompletion: { [weak self] result in
             switch result {
